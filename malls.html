@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>MALLS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+      body 
+      {margin: 0;
+        padding: 0;}
+      #map 
+      {position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;}
+      .marker 
+      {background-image: url('https://cdn.glitch.com/51cf0f8d-0d5c-4cc2-a710-ac5a0e57fdb0%2Fmarket.png?v=1620196042982');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;}
+      .mapboxgl-popup 
+      {max-width: 200px;}
+      .mapboxgl-popup-content 
+      {text-align: center;
+        font-family: 'Open Sans', sans-serif;}
+    </style>
+</head>
+  
+<body>
+<div id="map"></div>
+<input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i><i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>Taguig Map</header>
+      <a href="/"><i class="fa fa-map"></i><span>Home</span></a>
+      <a href="/hospital.html"><i class="fa fa-medkit"></i><span>Hospitals</span></a>
+      <a href="/police.html"><i class="fa fa-star"></i><span>Police Stations</span></a>
+      <a href="/fire.html"><i class="fa fa-fire-extinguisher"></i><span>Fire Stations</span></a>
+      <a href="/malls.html"><i class="fa fa-building"></i><span>Malls</span></a>
+       <a href="/covidtesting.html"><i class="fa  fa-flask"></i><span>Testing Facilities</span></a>
+      <a href="/TaguigContact.html"><i class="fa fa-phone "></i><span>Taguig Hotlines</span></a>
+          
+    
+    
+         <a href="/covidupdates.html">   <i class="fa  fa-thermometer-full  "></i>
+        <span>COVID UPDATES</span>
+      </a>
+ </div>
+ 
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaHVhbHVpcyIsImEiOiJja253bXYzdHYwZDI4Mm9wYm95ZDU2emtiIn0.2Rc6G-hSlmvPJ0BKYJ58TQ';
+
+var map = new mapboxgl.Map
+(
+  {
+  container: 'map',
+  style: 'mapbox://styles/joshualuis/cko5ucb6o168w18rzy2p80ce9',
+  center: [121.0509, 14.5176],
+  zoom: 12.5
+  });
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.060510, 14.488427]},
+    properties: {
+      title: 'Taguig Peoples Market',
+      description: 'Buy Essential Goods',
+      address: 'Address: 922 M. L. Quezon St, Lower Bicutan, Taguig, 1632 Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.056642, 14.524792]},
+    properties: {
+      title: 'Pinagsama Creek Side Public Market',
+      description: 'Buy Essential Goods',
+      address: 'Address: Taguig, Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.055730, 14.549384]},
+    properties: {
+      title: 'Fiesta Market',
+      description: 'Buy Essential Goods',
+      address: 'Address: LFV-Market-Market, Taguig, Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.056062, 14.550545]},
+    properties: {
+      title: 'Market Market',
+      description: 'Buy Essential Goods',
+      address: 'Address: McKinley Pkwy, Taguig, 1630 Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.074430, 14.525916]},
+    properties: {
+      title: 'Sta. Ana Public Market',
+      description: 'Buy Essential Goods',
+      address: 'Address: 2 Liwayway, Taguig, Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.081017, 14.541640]},
+    properties: {
+      title: 'Manyaman Food Store',
+      description: 'Buy Essential Goods',
+      address: 'Address: Taguig, Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.051628, 14.505806]},
+    properties: {
+      title: 'Puregold FTI',
+      description: 'Buy Essential Goods',
+      address: 'Address: Taguig, 1630 Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.066887, 14.510354]},
+    properties: {
+      title: 'Puregold Extra Hagonoy',
+      description: 'Buy Essential Goods',
+      address: 'Address: M. L. Quezon Avenue, Taguig, 1632 Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.050515, 14.508552]},
+    properties: {
+      title: 'Hypermarket FTI',
+      description: 'Buy Essential Goods',
+      address: 'Address: FTI Complex, DBP Ave, Taguig, Kalakhang Maynila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.051840, 14.507949]},
+    properties: {
+      title: 'Super8 Warehouse Signal Village',
+      description: 'Buy Essential Goods',
+      address: 'Address: 8 Rodrigues St, Taguig, 1632 Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.065613, 14.521525]},
+    properties: {
+      title: 'Savemore Acacia Estates',
+      description: 'Buy Essential Goods',
+      address: 'Address: Acacia Estates, Taguig, 1630',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.071785, 14.531431]},
+    properties: {
+      title: 'All Day Supermarket Taguig',
+      description: 'Buy Essential Goods',
+      address: 'Address: Ground Floor, Vista Mall, Camella Taguig Rd, Taguig, Kalakhang Maynila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.069746, 14.529507]},
+    properties: {
+      title: 'Puregold Taguig',
+      description: 'Buy Essential Goods',
+      address: 'Address: Gen. Luna Street, corner Col P Cruz, Taguig, 1634 Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.082789, 14.546645]},
+    properties: {
+      title: 'Puregold Tipas',
+      description: 'Buy Essential Goods',
+      address: 'Address: Capistrano, Taguig, Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.05516, 14.46615]},
+    properties: {
+      title: 'Puregold Lakefront',
+      description: 'Buy Essential Goods',
+      address: 'Address: Presidio, Dir. A. Bunye, Muntinlupa, Kalakhang Maynila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.042964, 14.486871]},
+    properties: {
+      title: 'Hypermarket Bicutan',
+      description: 'Buy Essential Goods',
+      address: 'Address: SM Bicutan Building B, Doña Soledad Ave, Bicutan, Parañaque, 1700 Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.061026, 14.484000]},
+    properties: {
+      title: 'Super8 Warehouse Bagumbayan',
+      description: 'Buy Essential Goods',
+      address: 'Address: Dir. A. Bunye, Taguig, Kalakhang Maynila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}},
+  {type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.053959, 14.545948]},
+    properties: {
+      title: 'Sm Aura',
+      description: 'Buy Essential Goods',
+      address: 'Address: 26th Street, Corner McKinley Pkwy, Taguig, 1630 Metro Manila',
+      phone: 'Open Hours: 10:00AM - 8:00PM'}}
+  ]};
+  
+geojson.features.forEach
+(function(marker) 
+{var el = document.createElement('div');
+  el.className = 'marker';
+  new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p><p>' + marker.properties.address + '</p><p>'+ marker.properties.phone + '</p>'))
+    .addTo(map);});
+</script>
+</body>
+</html>

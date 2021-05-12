@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>POLICE STATIONS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+      body 
+      {
+        margin: 0;
+        padding: 0;
+      }
+      #map 
+      {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker 
+      {
+        background-image: url('https://cdn.glitch.com/51cf0f8d-0d5c-4cc2-a710-ac5a0e57fdb0%2Fpolica.png?v=1620194971852');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+      .mapboxgl-popup 
+      {
+        max-width: 200px;
+      }
+      .mapboxgl-popup-content 
+      {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+      }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>Taguig Map</header>
+      <a href="/">
+        <i class="fa fa-map"></i>
+        <span>Home</span>
+      </a>
+      <a href="/hospital.html">
+        <i class="fa fa-medkit"></i>
+        <span>Hospitals</span>
+      </a>
+      <a href="/police.html">
+        <i class="fa fa-star"></i>
+        <span>Police Stations</span>
+      </a>
+      <a href="/fire.html">
+         <i class="fa fa-fire-extinguisher"></i>
+        <span>Fire Stations</span>
+      </a>
+      <a href="/malls.html">
+        <i class="fa fa-building"></i>
+        <span>Malls</span>
+      </a>
+       <a href="/TaguigContact.html">
+        <i class="fa fa-phone "></i>
+        <span>Taguig Hotlines</span>
+      </a>
+      
+      
+        <a href="/covidupdates.html">
+        <i class="fa  fa-thermometer-full  "></i>
+        <span>COVID UPDATES</span>
+      </a>
+      
+       <a href="/covidtesting.html">
+        <i class="fa  fa-flask   "></i>
+        <span>Testing Facilities</span>
+      </a>
+      
+    </div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaHVhbHVpcyIsImEiOiJja253bXYzdHYwZDI4Mm9wYm95ZDU2emtiIn0.2Rc6G-hSlmvPJ0BKYJ58TQ';
+
+var map = new mapboxgl.Map
+(
+  {
+  container: 'map',
+  style: 'mapbox://styles/joshualuis/cko5ucb6o168w18rzy2p80ce9',
+  center: [121.0509, 14.5176],
+  zoom: 12.5
+  }
+);
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.070852, 14.529135]
+    },
+    properties: {
+      title: 'Taguig City Police Station',
+      description: 'N/A',
+      address: 'Address: City Hall Compound, Gen. Luna St, Taguig, 1637 Metro Manila',
+      phone: 'Phone: +63286422062',
+      website: 'Website: N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.049686, 14.501577]
+    },
+    properties: {
+      title: 'Taguig City Police Station',
+      description: 'N/A',
+      address: 'Address: A. Bonifacio Ave Cor Maharlika Rd, Taguig, 1633 Metro Manila',
+      phone: 'Phone: +63286423582',
+      website: 'Website: http://www.pnp.gov.ph/'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.055927, 14.547856]
+    },
+    properties: {
+      title: 'Taguig City Police Station',
+      description: 'N/A',
+      address: 'Address: Bride Market Market, 26th St, Taguig, 1634 Metro Manila',
+      phone: 'Phone: +63286422062',
+      website: 'Website: http://www.taguig.gov.ph/'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.048770, 14.549777]
+    },
+    properties: {
+      title: 'BGC Police Community Precinct',
+      description: 'N/A',
+      address: 'Address: 28th Street Corner 7th Avenue, Taguig, 1634 Metro Manila',
+      phone: 'Phone: +63288161813',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.060943, 14.517087]
+    },
+    properties: {
+      title: 'Taguig City Police Station',
+      description: 'Government Office',
+      address: 'Kamias, Taguig, 1632 Metro Manila',
+      phone: 'Phone: +639108769756',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.072248, 14.530159]
+    },
+    properties: {
+      title: 'Office of The Chief Barangay Police Force',
+      description: 'N/A',
+      address: '80 Gen. Luna St, Taguig, 1637 Metro Manila',
+      phone: '+63282750957',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.027006, 14.526556]
+    },
+    properties: {
+      title: 'Brgy. Western Bicutan Taguig City Outpost Gate 3',
+      description: 'N/A',
+      address: 'Lanton Avenue, Taguig, 1631 Metro Manila',
+      phone: '+63286407046',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.055584, 14.524733]
+    },
+    properties: {
+      title: 'Police Station',
+      description: 'N/A',
+      address: 'Pinagsama Village Phase 1, Taguig, 1630 Metro Manila',
+      phone: '+63286423582',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.057514, 14.534398]
+    },
+    properties: {
+      title: 'TMRU Police Station',
+      description: 'N/A',
+      address: 'Carlos P. Garcia Ave, Taguig, Metro Manila',
+      phone: 'N/A',
+      website: 'N/A'
+    }
+  }, 
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.055979, 14.516567]
+    },
+    properties: {
+      title: 'Police Station',
+      description: 'N/A',
+      address: 'Ipil-Ipil, North Signal, Taguig, 1632 Metro Manila',
+      phone: '+63286423582',
+      website: 'http://www.pnp.gov.ph/'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.088495, 14.542195]
+    },
+    properties: {
+      title: 'Police Department Precint 5',
+      description: 'N/A',
+      address: '1630, 50 Dr Natividad, Taguig, 1630 Metro Manila',
+      phone: 'N/A',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.070393, 14.530802]
+    },
+    properties: {
+      title: 'Station Health Unit, Taguig City Police Station',
+      description: 'Government office',
+      address: '32 Gen. Luna St, Taguig, Metro Manila',
+      phone: '+639618758485',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.057167, 14.534844]
+    },
+    properties: {
+      title: 'Sub-Station 3 - Pinagsama Taguig Police Station',
+      description: 'N/A',
+      address: '1630 Garden Lloyd, St, Taguig, 1630 Kalakhang Maynila',
+      phone: '+639310139667',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.080032, 14.536056]
+    },
+    properties: {
+      title: 'Police Station',
+      description: 'Government office',
+      address: '1632 F.Manalo, Taguig, Metro Manila',
+      phone: '+63286423582',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.070431, 14.531580]
+    },
+    properties: {
+      title: 'Southern Police District - Station 6',
+      description: 'Government office',
+      address: '29 Gen. Luna St, Taguig, 1630 Metro Manila',
+      phone: '+63288161813',
+      website: 'N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.048291, 14.482296] 
+    },
+    properties: {
+      title: 'BLK. 3, Taguig City Police Station',
+      description: 'N/A',
+      address: 'Mañalac Ave, Manila, Metro Manila',
+      phone: 'N/A',
+      website: 'N/A'
+    }
+  },
+    
+    
+      {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.059358, 14.473589] 
+    },
+    properties: {
+      title: 'BLK. 3, BAgumbayan, Taguig City Police Station',
+      description: 'N/A',
+      address: 'Dir. A. Bunye, Taguig, Kalakhang Maynila',
+      phone: 'N/A',
+      website: 'N/A'
+    }
+  },
+    
+    
+    
+    
+  ]
+};
+  // add markers to map
+geojson.features.forEach
+(function(marker) 
+{
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p><p>' + marker.properties.address + '</p><p>'+ marker.properties.phone + '</p></p>' + marker.properties.website + '</p>'))
+    .addTo(map);
+ }
+ );
+</script>
+</body>
+</html>
