@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>TAGUIG MAPPING SYSTEM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+      
+      
+      .navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  
+}
+
+.navbar a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 15px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #04AA6D;
+  color: white;
+      }
+      
+      .navbar a.danger {
+  background-color: #ff0000;
+  color: white;
+      }
+      
+      
+       .navbar a.black {
+  background-color: #4400ff;
+  color: white;
+      }
+      
+      
+      body 
+      {
+        margin: 0;
+        padding: 0;
+      }
+      #map 
+      {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker 
+      {
+        background-image: url('https://cdn.glitch.com/51cf0f8d-0d5c-4cc2-a710-ac5a0e57fdb0%2Fcovid%20virus.png?v=1620181415220');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+      .mapboxgl-popup 
+      {
+        max-width: 200px;
+      }
+      .mapboxgl-popup-content 
+      {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+      }
+    
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>Taguig Map</header>
+      <a href="/">
+        <i class="fa fa-map"></i>
+        <span>Home</span>
+      </a>
+      <a href="/hospital.html">
+        <i class="fa fa-medkit"></i>
+        <span>Hospitals</span>
+      </a>
+      <a href="/police.html">
+        <i class="fa fa-star"></i>
+        <span>Police Stations</span>
+      </a>
+      <a href="/fire.html">
+         <i class="fa fa-fire-extinguisher"></i>
+        <span>Fire Stations</span>
+      </a>
+      <a href="/malls.html">
+        <i class="fa fa-building"></i>
+        <span>Malls</span>
+      </a>
+             <a href="/covidtesting.html">
+        <i class="fa  fa-flask   "></i>
+        <span >Testing Facilities</span>
+      </a>
+      
+      
+        <a href="/TaguigContact.html">
+        <i class="fa fa-phone "></i>
+        <span>Taguig Hotlines</span>
+      </a>
+      
+      
+      <a href="/covidupdates.html">
+        <i class="fa  fa-thermometer-full  "></i>
+        <span>COVID UPDATES</span>
+      </a>
+      
+  
+      
+    </div>
+  
+  <div class="navbar">
+    
+
+ 
+ 
+  <a href="#home" class="black">TOTAL CONFIRMED: 23,629       </a>
+      <a href="#home" class="danger">TOTAL ACTIVE CASES: 614          </a>
+          <a href="#home" class="active ">TOTAL RECOVERED: 22,794        </a>
+  <a  class="">AS OF MAY 09, 2021</a>
+</div>
+
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaHVhbHVpcyIsImEiOiJja253bXYzdHYwZDI4Mm9wYm95ZDU2emtiIn0.2Rc6G-hSlmvPJ0BKYJ58TQ';
+
+var map = new mapboxgl.Map
+(
+  {
+  container: 'map',
+  style: 'mapbox://styles/joshualuis/cko5ucb6o168w18rzy2p80ce9',
+  center: [121.0509, 14.5176],
+  zoom: 12.5
+  }
+);
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.055009, 14.477028]
+    },
+    properties: {
+      title: 'BAGUMBAYAN',
+      description: 'Confirmed: 1208',
+      address: 'Recovered: 1174',
+      phone: 'Active Cases: 11 '
+    }
+     },
+    {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.06934, 14.524033]
+    },
+    properties: {
+      title: 'BAMBANG',
+      description: 'Confirmed: 418',
+      address: 'Recovered: 414',
+      phone: 'Active Cases: 3'
+        
+    }
+  },
+  
+      {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.080803, 14.530109]
+    },
+    properties: {
+      title: 'CALZADA',
+      description: 'Confirmed: 607',
+      address: 'Recovered: 597',
+      phone: 'Active Cases: 9 '
+    }
+  },
+            
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.069418, 14.511863]
+    },
+    properties: {
+      title: 'HAGONOY',
+      description: 'Confirmed: 640',
+      address: 'Recovered: 623',
+      phone: 'Active Cases: 11'
+    }
+  },
+    
+     {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.087251, 14.538856]
+    },
+    properties: {
+      title: 'IBAYO-TIPAS',
+      description: 'Confirmed: 436',
+      address: 'Recovered: 424',
+      phone: 'Active Cases: 5'
+    }
+  },
+    
+    
+       {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.077938, 14.543451]
+    },
+    properties: {
+      title: 'LIGID-TIPAS',
+      description: 'Confirmed: 458',
+      address: 'Recovered: 448',
+      phone: 'Active Cases: 2 '
+    }
+  },
+       
+        
+         {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.059314, 14.490846]
+    },
+    properties: {
+      title: 'LOWER BICUTAN',
+      description: 'Confirmed: 1702',
+      address: 'Recovered: 1686',
+      phone: 'Active Cases: 3 '
+    }
+  },
+     
+         {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.063249, 14.502555]
+    },
+    properties: {
+      title: 'NEW LOWER BICUTAN',
+      description: 'Confirmed: 1143',
+      address: 'Recovered: 1115',
+      phone: 'Active Cases: 16 '
+    }
+  },
+     
+    
+         {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.097996, 14.535343]
+    },
+    properties: {
+      title: 'NAPINDAN',
+      description: 'Confirmed: 281',
+      address: 'Recovered: 266',
+      phone: 'Active Cases: 6 '
+    }
+  },
+    
+    
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.086535, 14.531854]
+    },
+    properties: {
+      title: 'PALINGON',
+      description: 'Confirmed: 376',
+      address: 'Recovered: 359',
+      phone: 'Active Cases: 12 '
+    }
+  },
+    
+    
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.066474, 14.516699]
+    },
+    properties: {
+      title: 'SAN MIGUEL',  
+      description: 'Confirmed: 336',
+      address: 'Recovered: 326',
+      phone: 'Active Cases: 8 '
+    }
+  },
+    
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.082207, 14.523558] 
+    },
+    properties: {
+      title: 'STA. ANA',  
+      description: 'Confirmed: 569',
+      address: 'Recovered: 557',
+      phone: 'Active Cases: 7 '
+    }
+  },
+    
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.07149, 14.530826]
+    },
+    properties: {
+      title: 'TUKTUKAN',  
+      description: 'Confirmed: 407',
+      address: 'Recovered: 401',
+      phone: 'Active Cases: 2 '
+    }
+  },
+    
+          {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.065173, 14.53115]
+    },
+    properties: {
+      title: 'USUSAN',  
+      description: 'Confirmed: 1515',
+      address: 'Recovered: 1463',
+      phone: 'Active Cases: 46 '
+    }
+  },
+    
+          {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.079107, 14.518712] 
+    },
+    properties: {
+      title: 'WAWA',  
+      description: 'Confirmed: 359',
+      address: 'Recovered: 355',
+      phone: 'Active Cases: N/A '
+    }
+  },
+    
+    
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.051510, 14.491227] 
+    },
+    properties: {
+      title: 'CENTRAL BICUTAN',  
+      description: 'Confirmed: 681',
+      address: 'Recovered: 649',
+      phone: 'Active Cases: 23 '
+    }
+  },
+    
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.055009, 14.510621]
+    },
+    properties: {
+      title: 'CENTRAL SIGNAL',  
+      description: 'Confirmed: 1111',
+      address: 'Recovered: 1057',
+      phone: 'Active Cases: 44 '
+    }
+  },
+    
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.050318, 14.540867] 
+    },
+    properties: {
+      title: 'FORT BONIFACIO',  
+      description: 'Confirmed: 2305',
+      address: 'Recovered: 2267',
+      phone: 'Active Cases: 29 '
+    }
+  },
+    
+        {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.0493132, 14.497995] 
+    },
+    properties: {
+      title: 'UPPER BICUTAN',  
+      description: 'Confirmed: 864',
+      address: 'Recovered: 843',
+      phone: 'Active Cases: 12 '
+    }
+  },
+    
+    
+          {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.061458, 14.516786] 
+    },
+    properties: {
+      title: 'KATUPARAN',  
+      description: 'Confirmed: 531',
+      address: 'Recovered: 519',
+      phone: 'Active Cases: 5 '
+    }
+  },
+    
+          {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.055836, 14.497593] 
+    },
+    properties: {
+      title: 'MAHARLKIA VILLAGE',  
+      description: 'Confirmed: 238',
+      address: 'Recovered: 235',
+      phone: 'Active Cases: 3 '
+    }
+  },
+    
+    
+              {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.057159, 14.516122] 
+    },
+    properties: {
+      title: 'NORTH SIGNAL',  
+      description: 'Confirmed: 923',
+      address: 'Recovered: 901',
+      phone: 'Active Cases: 15 '
+    }
+  },
+    
+    
+                 {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.052143, 14.526548] 
+    },
+    properties: {
+      title: 'PINAGSAMA',  
+      description: 'Confirmed: 1910',
+      address: 'Recovered: 1871',
+      phone: 'Active Cases: 27 '
+    }
+  },
+    
+    
+                  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.050227, 14.468634]  
+    },
+    properties: {
+      title: 'SOUTH DAANG HARI',  
+      description: 'Confirmed: 357',
+      address: 'Recovered: 351',
+      phone: 'Active Cases: N/A '
+    }
+  },
+    
+    
+                   {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.055519, 14.504218]  
+    },
+    properties: {
+      title: 'SOUTH SIGNAL',  
+      description: 'Confirmed: 888',
+      address: 'Recovered: 855',
+      phone: 'Active Cases: 16 '
+    }
+  },
+    
+    
+      {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.048560, 14.477322]  
+    },
+    properties: {
+      title: 'TANYAG',  
+      description: 'Confirmed: 302',
+      address: 'Recovered: 296',
+      phone: 'Active Cases: 1 '
+    }
+  },
+    
+      {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.036241, 14.519253]  
+    },
+    properties: {
+      title: 'WESTERN BICUTAN',  
+      description: 'Confirmed: 1504',
+      address: 'Recovered: 1452',
+      phone: 'Active Cases: 32 '
+    }
+  },
+    
+      {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.047127, 14.485283]  
+    },
+    properties: {
+      title: 'NORTH DAANG HARI',  
+      description: 'Confirmed: 467',
+      address: 'Recovered: 464',
+      phone: 'Active Cases: 1 '
+    }
+  },
+    
+  ]
+};
+  // add markers to map
+geojson.features.forEach
+(function(marker) 
+{
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3 style="color:blue;" >' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p><p style="color:green;">' + marker.properties.address + '</p><p style="color:red;">'+ marker.properties.phone + '</p>'))
+    .addTo(map);
+ }
+ );
+</script>
+</body>
+</html>

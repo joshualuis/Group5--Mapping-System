@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>FIRE STATIONS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+      body 
+      {
+        margin: 0;
+        padding: 0;
+      }
+      #map 
+      {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker 
+      {
+        background-image: url('https://cdn.glitch.com/51cf0f8d-0d5c-4cc2-a710-ac5a0e57fdb0%2F1840130.png?v=1620195643974');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+      .mapboxgl-popup 
+      {
+        max-width: 200px;
+      }
+      .mapboxgl-popup-content 
+      {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+      }
+    </style>
+</head> 
+<body>
+  
+<div id="map"></div>
+
+<input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>Taguig Map</header>
+      <a href="/">
+        <i class="fa fa-map"></i>
+        <span>Home</span>
+      </a>
+      <a href="/hospital.html">
+        <i class="fa fa-medkit"></i>
+        <span>Hospitals</span>
+      </a>
+      <a href="/police.html">
+        <i class="fa fa-star"></i>
+        <span>Police Stations</span>
+      </a>
+      <a href="/fire.html">
+         <i class="fa fa-fire-extinguisher"></i>
+        <span>Fire Stations</span>
+      </a>
+      <a href="/malls.html">
+        <i class="fa fa-building"></i>
+        <span>Malls</span>
+      </a>
+      
+        <a href="/covidtesting.html">
+        <i class="fa  fa-flask   "></i>
+        <span>Testing Facilities</span>
+      </a>
+      
+       <a href="/TaguigContact.html">
+        <i class="fa fa-phone "></i>
+        <span>Taguig Hotlines</span>
+      </a>
+      
+        <a href="/covidupdates.html">
+        <i class="fa  fa-thermometer-full  "></i>
+        <span>COVID UPDATES</span>
+      </a>
+      
+     
+  </div>
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaHVhbHVpcyIsImEiOiJja253bXYzdHYwZDI4Mm9wYm95ZDU2emtiIn0.2Rc6G-hSlmvPJ0BKYJ58TQ';
+
+      var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/joshualuis/cko5ucb6o168w18rzy2p80ce9',
+      center: [121.0509, 14.5176],
+      zoom: 12.5
+    });
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.042994, 14.502804] 
+    },
+    properties: {
+      title: 'BFP Taguig City - Fire Station 1',
+      description: 'Fire Station.',
+      address: 'Address: ARCA South, Taguig, 1630 Metro Manila',
+      phone: 'Phone: +63288370740'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.059132, 14.473824], 
+    },
+    properties: {
+      title: 'Bagumbayan Fire Sub Station BFP NCR FDIV',
+      description: 'Bagumbayan Fire Station',
+      address: '39 Dir. A. Bunye, Taguig, Kalakhang Maynila',
+      phone: 'Phone: (02) 8837 8132'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.088456, 14.540456],
+    },
+    properties: {
+      title: 'Bombero Tipas Sub-Station',
+      description: 'Hospital in Taguig',
+      address: 'Address: Dr. Natividad, Taguig, 1630 Metro Manila',
+      phone: 'Phone: N/A'
+    }
+  },
+
+  
+
+
+  ]
+};
+  // add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p><p>' + marker.properties.address + '</p><p>'+ marker.properties.phone + '</p>'))
+    .addTo(map);
+});
+
+// code from the next step will go here!
+
+</script>
+    
+  
+</body>
+</html>

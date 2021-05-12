@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>HOSPITALS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+      body 
+      {
+        margin: 0;
+        padding: 0;
+      }
+      #map 
+      {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker 
+      {
+        background-image: url('https://cdn.glitch.com/51cf0f8d-0d5c-4cc2-a710-ac5a0e57fdb0%2Fhospitals.png?v=1620194716370');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+      .mapboxgl-popup 
+      {
+        max-width: 200px;
+      }
+      .mapboxgl-popup-content 
+      {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+      }
+    </style>
+</head> 
+<body>
+  
+<div id="map"></div>
+
+<input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>Taguig Map</header>
+      <a href="/">
+        <i class="fa fa-map"></i>
+        <span>Home</span>
+      </a>
+      <a href="/hospital.html">
+        <i class="fa fa-medkit"></i>
+        <span>Hospitals</span>
+      </a>
+      <a href="/police.html">
+        <i class="fa fa-star"></i>
+        <span>Police Stations</span>
+      </a>
+      <a href="/fire.html">
+         <i class="fa fa-fire-extinguisher"></i>
+        <span>Fire Stations</span>
+      </a>
+      <a href="/malls.html">
+        <i class="fa fa-building"></i>
+        <span>Malls</span>
+      </a>
+            
+       <a href="/covidtesting.html">
+        <i class="fa  fa-flask   "></i>
+        <span>Testing Facilities</span>
+      </a>
+
+      
+       <a href="/TaguigContact.html">
+        <i class="fa fa-phone "></i>
+        <span>Taguig Hotlines</span>
+      </a>
+      
+        <a href="/covidupdates.html">
+        <i class="fa  fa-thermometer-full  "></i>
+        <span>COVID UPDATES</span>
+      </a>
+  </div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaHVhbHVpcyIsImEiOiJja253bXYzdHYwZDI4Mm9wYm95ZDU2emtiIn0.2Rc6G-hSlmvPJ0BKYJ58TQ';
+
+      var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/joshualuis/cko5ucb6o168w18rzy2p80ce9',
+      center: [121.0509, 14.5176],
+      zoom: 12.5
+    });
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.031679, 14.530272]
+    },
+    properties: {
+      title: 'Philippine Navy, Manila Naval Hospital',
+      description: 'Military hospital.',
+      address: 'Address: Taguig, Metro Manila',
+      phone: 'Phone: N/A'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.034189, 14.510724],
+    },
+    properties: {
+      title: 'Taguig-Pateros District Hospital',
+      description: 'Government Hospital',
+      address: 'Address: E Service Rd, Taguig, 1630 Metro Manila',
+      phone: 'Phone: (02) 8837 8132'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.038450, 14.509019],
+    },
+    properties: {
+      title: '130 Doctors Polyclinics',
+      description: 'Hospital',
+      address: 'Address: E.A.M Apartelle, 6th St, Taguig, 1630 Metro Manila',
+      phone: 'Phone: N/A'
+    }
+  },
+
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.048156, 14.555109],
+    },
+    properties: {
+      title: 'St. Luke\'s Medical Center - Global City',
+      description: 'Medical center in Taguig',
+      address: 'Address: Rizal Drive cor. 32nd St. and, 5th Ave, Taguig, 1634 Metro Manila',
+      phone: 'Phone: (02) 8789 7700'
+    }
+  },
+
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.051183, 14.507153],
+    },
+    properties: {
+      title: 'The Medical City SM Hypermarket FTI',
+      description: 'Private hospital in Taguig',
+      address: 'Address: Taguig, 1630 Metro Manila',
+      phone: 'Phone: N/A'
+    }
+  },
+
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.05949960139075, 14.513376106702626],
+    },
+    properties: {
+      title: 'Recuenco General Hospital',
+      description: 'Hospital',
+      address: 'Address: 68 Sampaloc Ext, Taguig, 1630 Metro Manila',
+      phone: 'Phone: +63288085950'
+    }
+  },
+
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.05359852869722, 14.50613217289275],
+    },
+    properties: {
+      title: 'Signal Village Diagnostic Center',
+      description: 'Private hospital in Taguig',
+      address: 'Address: General Espino Street, Taguig, 1630 Metro Manila',
+      phone: 'Phone: +63288374892'
+    }
+  },
+             
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.04792206115717, 14.530993041671799],
+    },
+    properties: {
+      title: 'Philippine Army General Hospital',
+      description: 'Military hospital',
+      address: 'Address: MGEN M Castaneda St, Taguig, 1630 Metro Manila',
+      phone: 'Phone: +63288459555'
+    }
+  },
+  
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.06547589930305, 14.530646673097515],
+    },
+    properties: {
+      title: 'Medical Center Taguig, Inc.',
+      description: 'Hospital',
+      address: 'Address: Levi B. Mariano Ave, Taguig, 1630 Metro Manila',
+      phone: 'Phone: +63288886284'
+    }
+  },
+    
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.06102863244361, 14.478784148274803],
+    },
+    properties: {
+      title: 'Taguig Doctors Hospital',
+      description: 'Hospital',
+      address: 'Address: 39 Dir. A. Bunye, Taguig, Kalakhang Maynila',
+      phone: 'Phone: +63288370178'
+    }
+  },
+             
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.06046380554105, 14.483989952124235],
+    },
+    properties: {
+      title: 'Holy Mary Family Hospital',
+      description: 'General Hospital',
+      address: 'Address: 34, Manuel L. Quezon Street, Bagumbayan, Metro Manila, Taguig, 1630',
+      phone: 'Phone: +63288370246'
+    }
+  },
+             
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.06042966470457, 14.488718957954239],
+    },
+    properties: {
+      title: 'Dr. Sabili General Hospital',
+      description: 'Hospital',
+      address: 'Address: Road 2 General Santos Ave, Lower Bicutan, Taguig, Metro Manila',
+      phone: 'Phone: +639099566824'
+    }
+  },
+             
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [121.06042966470457, 14.488718957954239],
+    },
+    properties: {
+      title: 'Dr. J. Sabili',
+      description: 'Hospital',
+      address: 'Address: Road 2 General Santos Ave, Lower Bicutan, Taguig, Metro Manila',
+      phone: 'Phone: +639099566824'
+    }
+  },
+
+
+  ]
+};
+  // add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p><p>' + marker.properties.address + '</p><p>'+ marker.properties.phone + '</p>'))
+    .addTo(map);
+});
+
+// code from the next step will go here!
+
+</script>
+    
+  
+</body>
+</html>
